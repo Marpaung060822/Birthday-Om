@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartu Ucapan Selamat Ulang Tahun</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f0c29;
+            background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd300;
+            top: 0;
+            opacity: 0;
+        }
+        
+        .confetti-piece:nth-child(1) {
+            left: 7%;
+            transform: rotate(-40deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 182ms;
+            animation-duration: 1116ms;
+        }
+        
+        .confetti-piece:nth-child(2) {
+            left: 14%;
+            transform: rotate(4deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 161ms;
+            animation-duration: 1076ms;
+            background: #00d8ff;
+        }
+        
+        .confetti-piece:nth-child(3) {
+            left: 21%;
+            transform: rotate(-51deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 481ms;
+            animation-duration: 1103ms;
+            background: #ff0057;
+        }
+        
+        .confetti-piece:nth-child(4) {
+            left: 28%;
+            transform: rotate(61deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 334ms;
+            animation-duration: 943ms;
+            background: #00f7ff;
+        }
+        
+        .confetti-piece:nth-child(5) {
+            left: 35%;
+            transform: rotate(-52deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 302ms;
+            animation-duration: 1s;
+            background: #ff4fa1;
+        }
+        
+        .confetti-piece:nth-child(6) {
+            left: 42%;
+            transform: rotate(38deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 180ms;
+            animation-duration: 1227ms;
+            background: #43ff64;
+        }
+        
+        .confetti-piece:nth-child(7) {
+            left: 49%;
+            transform: rotate(11deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 395ms;
+            animation-duration: 1200ms;
+            background: #ff9300;
+        }
+        
+        .confetti-piece:nth-child(8) {
+            left: 56%;
+            transform: rotate(49deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 14ms;
+            animation-duration: 887ms;
+            background: #ff4fa1;
+        }
+        
+        .confetti-piece:nth-child(9) {
+            left: 63%;
+            transform: rotate(-72deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 149ms;
+            animation-duration: 805ms;
+            background: #fff200;
+        }
+        
+        .confetti-piece:nth-child(10) {
+            left: 70%;
+            transform: rotate(10deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 351ms;
+            animation-duration: 1059ms;
+            background: #ff0057;
+        }
+        
+        .confetti-piece:nth-child(11) {
+            left: 77%;
+            transform: rotate(4deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 307ms;
+            animation-duration: 1132ms;
+            background: #00f7ff;
+        }
+        
+        .confetti-piece:nth-child(12) {
+            left: 84%;
+            transform: rotate(42deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 464ms;
+            animation-duration: 776ms;
+            background: #ff9300;
+        }
+        
+        .confetti-piece:nth-child(13) {
+            left: 91%;
+            transform: rotate(-72deg);
+            animation: makeItRain 1000ms infinite ease-out;
+            animation-delay: 429ms;
+            animation-duration: 818ms;
+            background: #43ff64;
+        }
+        
+        .confetti-piece:nth-child(even) {
+            width: 15px;
+            height: 15px;
+        }
+        
+        .confetti-piece:nth-child(4n) {
+            width: 8px;
+            height: 8px;
+        }
+        
+        .confetti-piece:nth-child(3n) {
+            width: 12px;
+            height: 12px;
+        }
+        
+        .confetti-piece:nth-child(odd) {
+            border-radius: 50%;
+        }
+        
+        @keyframes makeItRain {
+            from {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        
+        .birthday-card {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.6s ease;
+            margin: 40px 0;
+        }
+        
+        .birthday-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .birthday-card.clicked {
+            transform: translateY(-5px) scale(0.98);
+        }
+        
+        .card-cover {
+            position: relative;
+            padding: 40px;
+            text-align: center;
+            background: linear-gradient(45deg, #fc466b, #3f5efb);
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+        }
+        
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+            opacity: 0.5;
+        }
+        
+        .floating-balloons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .balloon {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .balloon:nth-child(1) {
+            left: 10%;
+            top: 30%;
+            font-size: 30px;
+            animation-delay: 0s;
+            animation-duration: 7s;
+            color: #ffcc00;
+            transform: rotate(-10deg);
+        }
+        
+        .balloon:nth-child(2) {
+            left: 20%;
+            top: 50%;
+            font-size: 25px;
+            animation-delay: 1s;
+            animation-duration: 6s;
+            color: #ff6b6b;
+            transform: rotate(15deg);
+        }
+        
+        .balloon:nth-child(3) {
+            right: 15%;
+            top: 40%;
+            font-size: 28px;
+            animation-delay: 2s;
+            animation-duration: 8s;
+            color: #4ecdc4;
+            transform: rotate(-5deg);
+        }
+        
+        .balloon:nth-child(4) {
+            right: 25%;
+            top: 60%;
+            font-size: 22px;
+            animation-delay: 0.5s;
+            animation-duration: 7.5s;
+            color: #ff9ff3;
+            transform: rotate(10deg);
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+        
+        .birthday-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .birthday-cake {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .card-content {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .message {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .message p {
+            margin-bottom: 15px;
+        }
+        
+        .message-highlight {
+            font-weight: 700;
+            color: #3f5efb;
+            font-size: 1.2rem;
+        }
+        
+        .signature {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.5rem;
+            color: #fc466b;
+            text-align: right;
+            margin-top: 20px;
+        }
+        
+        .emoji {
+            font-size: 1.5rem;
+            vertical-align: middle;
+            margin: 0 5px;
+        }
+        
+        .hashtag {
+            display: inline-block;
+            margin-top: 20px;
+            background: linear-gradient(45deg, #fc466b, #3f5efb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .music-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #fc466b, #3f5efb);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .music-btn i {
+            font-size: 1.5rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .birthday-card {
+                max-width: 90%;
+            }
+            
+            .card-cover, .card-content {
+                padding: 25px;
+            }
+            
+            .birthday-title {
+                font-size: 2.5rem;
+            }
+            
+            .birthday-cake {
+                font-size: 3rem;
+            }
+            
+            .message {
+                font-size: 1rem;
+            }
+            
+            .signature {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti">
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confettiBerikut adalah lanjutan kode setelah bagian yang terpotong:
+
+```html
+-piece"></div>
+    </div>
+    
+    <div class="birthday-card">
+        <div class="card-cover">
+            <div class="cover-overlay"></div>
+            <div class="floating-balloons">
+                <div class="balloon">🎈</div>
+                <div class="balloon">🎁</div>
+                <div class="balloon">🎉</div>
+                <div class="balloon">🎂</div>
+            </div>
+            <div class="birthday-cake">
+                <i class="fas fa-birthday-cake"></i>
+            </div>
+            <h1 class="birthday-title">Happy Birthday!</h1>
+        </div>
+        
+        <div class="card-content">
+            <div class="message">
+                <p>Yo! <span class="message-highlight">Om!</span> It's your special day!</p>
+                <p>Gokil sih hari ini, masa udah nambah umur aja! Auto BUCIN (Butuh Cincin) dong ya... tapi jangan baper, maksudnya cincin donat! <span class="emoji">🍩</span></p>
+                <p>Ga kerasa ya, kita udah friendship goals berapa lama, makin gede makin kece! Anyway, semoga di umur yang ANJAY (Asli Nyata Jaya Abadi Yahud) ini lo bisa dapetin semua yang lo mau!</p>
+                <p class="message-highlight">Semoga makin sultan, makin auto glow up, makin kece badai, dan jangan lupa traktir ya! <span class="emoji">🔥</span></p>
+                <p>Stay CLBK (Cantik, Lucu, Baik, Keren) dan jangan FOMO (Fear Of Missing Out) sama kesuksesan! Gas terus sampe mental illness! <span class="emoji">🚀</span></p>
+                <p class="hashtag">#Birthday #BlessedAF #NoDebat</p>
+            </div>
+            <div class="signature">Your Friends!</div>
+        </div>
+        
+        <button class="music-btn" onclick="toggleMusic()">
+            <i class="fas fa-music"></i>
+        </button>
+    </div>
+    
+    <audio id="birthdaySong" loop>
+        <source src="Sal Priadi - Serta Mulia.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        let isMusicPlaying = false;
+        const song = document.getElementById('birthdaySong');
+        
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                song.pause();
+                isMusicPlaying = false;
+                document.querySelector('.music-btn i').classList.remove('fa-volume-up');
+                document.querySelector('.music-btn i').classList.add('fa-music');
+            } else {
+                song.play().catch(e => console.log("Auto-play prevented: " + e));
+                isMusicPlaying = true;
+                document.querySelector('.music-btn i').classList.remove('fa-music');
+                document.querySelector('.music-btn i').classList.add('fa-volume-up');
+            }
+        }
+        
+        // Create continuous confetti
+        function createConfetti() {
+            const confettiContainer = document.querySelector('.confetti');
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti-piece');
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    confetti.style.animationDelay = Math.random() * 5 + 's';
+                    confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                    confettiContainer.appendChild(confetti);
+                    
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        confetti.remove();
+                        createConfetti();
+                    }, 5000);
+                }, i * 100);
+            }
+        }
+        
+        // Add balloon emojis since some FontAwesome icons might not be available
+        document.querySelectorAll('.balloon').forEach((balloon, index) => {
+            const emojis = ['🎈', '🎁', '🎉', '🎂'];
+            balloon.innerHTML = emojis[index % emojis.length];
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            createConfetti();
+            
+            // Add click event to the card for a fun effect
+            document.querySelector('.birthday-card').addEventListener('click', function(e) {
+                if (!e.target.closest('.music-btn')) {
+                    this.classList.add('clicked');
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
